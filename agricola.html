@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Explotacions agrícoles a Catalunya</title>
+	<meta charset="utf-8">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<!-- Font Awesome -->
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/agricola.css">
+	<!-- Llibreria per a gràfiques -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+	<!-- JS -->
+	<script type="text/javascript" src="js/agricola.js"></script>
+
+</head>
+<body>
+	<div class="container">
+		<h1 class="text-center">Explotacions agrícoles a Catalunya</h1>
+		
+		<div>
+			<div id="content">
+				<div class="form-inline d-flex justify-content-center my-3">
+					<div class="input-group input-group-md">
+						<select class="form-control mr-3" type="text" name="poblacio" id="comarca" autocomplete="on" placeholder="Població...">
+							<option value="0" selected>Tria comarca...</option>
+						</select>
+
+						<select class="form-control mr-3" type="text" name="poblacio" id="poblacio" autocomplete="on" placeholder="Població...">
+							<option value="0" selected>Tria municipi...</option>
+						</select>
+
+						<span class="input-group-btn">
+							<button class="btn btn-info btn-flat disabled" id="cercar"><i class="fa fa-search"></i></button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="d-flex flex-column align-items-center">
+			<div class="card w-75">
+				<div class="row no-gutters">
+					<div class="col-3 bg-success text-white text-center">
+						<div class="card-body">
+							<h3 class="card-text"><i class="fas fa-tractor"></i></h3>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card-body">
+							<h3 class="card-text text-center" id="nom">N/A</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card w-75">
+				<div class="row no-gutters">
+					<div class="col-3 bg-warning text-white text-center">
+						<div class="card-body">
+							<h3 class="card-text"><i class="fas fa-map-marked-alt"></i></h3>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card-body">
+							<h3 class="card-text text-center" id="adresa">N/A</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card w-75">
+				<div class="row no-gutters">
+					<div class="col-3 bg-danger text-white text-center">
+						<div class="card-body">
+							<h3 class="card-text"><i class="fas fa-paw"></i></h3>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card-body">
+							<h3 class="card-text text-center" id="especie">N/A</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mt-3">
+			<canvas id="grafica" class="mx-auto"></canvas>
+		</div>
+		<footer class="footer mt-auto py-3">
+			<div class="container text-center">
+				<span class="text-muted"><a href="https://ioc.xtec.cat">&copy; IOC</a></span>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

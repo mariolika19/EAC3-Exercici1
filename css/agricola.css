@@ -1,0 +1,19 @@
+body{
+	background-image: url("https://cdn.pixabay.com/photo/2020/04/03/06/57/farm-background-4997629_1280.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#grafica{
+	position: relative; 
+	height:40vh; 
+	width:50vw;
+}
+
+#grafica{
+	background-color: rgba(0, 0, 0, 0.7);
+}
+.card-text{
+    font-size: 1.3vw;
+}
+
