@@ -109,46 +109,46 @@ window.onload = function () {
     //El usuario debe haber seleccionado una población antes de darle a la lupa
     if (desplegable.length > 1) {
       //Cogemos el valor de la población seleccionada
-      let nomPoblacio = desplegable.value;
+      let nomPoblacion = desplegable.value;
 
       //Última petición AJAX con valor de comarca y municipio
       let consultaGranja = new XMLHttpRequest();
-      let grangesURL = URL + "?municipi=" + nomPoblacio;
+      let granjasURL = URL + "?municipi=" + nomPoblacion;
 
-      consultaGranja.open("GET", grangesURL, true);
+      consultaGranja.open("GET", granjasURL, true);
       consultaGranja.send(null);
-      consultaGranja.onload = ompleDades;
+      consultaGranja.onload = rellenaDatos;
 
-      function ompleDades() {
+      function rellenaDatos() {
 
         //Creamos las variables donde queremos pasar la información
         let nom = document.getElementById("nom");
-        let adreca = document.getElementById("adresa");
+        let direccion = document.getElementById("adresa");
         let especie = document.getElementById("especie");
-        let fitxerDadesFinals = consultaGranja.responseXML;
-        console.log(fitxerDadesFinals);
+        let ficheroDataFinal = consultaGranja.responseXML;
+        console.log(ficheroDataFinal);
 
         //Buscamos los valores de los elementos con el nombre del archivo XML
-        let nomGranja = fitxerDadesFinals.getElementsByTagName("nom_explotaci")[0].textContent;
-        let adrecaGranja = fitxerDadesFinals.getElementsByTagName("adre_a_explotaci")[0].textContent;
-        let especieGranja = fitxerDadesFinals.getElementsByTagName("esp_cie")[0].textContent;
+        let nomGranja = ficheroDataFinal.getElementsByTagName("nom_explotaci")[0].textContent;
+        let direccionGranja = ficheroDataFinal.getElementsByTagName("adre_a_explotaci")[0].textContent;
+        let especieGranja = ficheroDataFinal.getElementsByTagName("esp_cie")[0].textContent;
 
         //Rellenamos los elementos con los valores
         nom.innerText = nomGranja;
-        adreca.innerText = adrecaGranja;
+        direccion.innerText = direccionGranja;
         especie.innerText = especieGranja;
 
         
         //------------EJERCICIO 4 --------------//
         //Buscamos los valores para rellenar la gráfica
-        let cria = fitxerDadesFinals.getElementsByTagName("cap_cria")[0].textContent;
-        let engreix = fitxerDadesFinals.getElementsByTagName("cap_engreix")[0].textContent;
-        let femelles = fitxerDadesFinals.getElementsByTagName("cap_femelles")[0].textContent;
-        let mascles = fitxerDadesFinals.getElementsByTagName("cap_mascles")[0].textContent;
-        let reposicio = fitxerDadesFinals.getElementsByTagName("cap_reposici")[0].textContent;
+        let cria = ficheroDataFinal.getElementsByTagName("cap_cria")[0].textContent;
+        let engreix = ficheroDataFinal.getElementsByTagName("cap_engreix")[0].textContent;
+        let femelles = ficheroDataFinal.getElementsByTagName("cap_femelles")[0].textContent;
+        let mascles = ficheroDataFinal.getElementsByTagName("cap_mascles")[0].textContent;
+        let reposicio = ficheroDataFinal.getElementsByTagName("cap_reposici")[0].textContent;
 
-        valorsGrafica = [cria, engreix, femelles, mascles, reposicio];
-        dibuixaGrafica(valorsGrafica);
+        valoresGraf = [cria, engreix, femelles, mascles, reposicio];
+        dibuixaGrafica(valoresGraf);
       }
     }
   }
