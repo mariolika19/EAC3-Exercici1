@@ -61,48 +61,47 @@ window.onload = function () {
   let URL = "https://analisi.transparenciacatalunya.cat/resource/7bpt-5azk.xml";
   peticioComarques.open("GET", URL, true);
   peticioComarques.send(null);
-  peticioComarques.onload = ompleLlistaComarques;
+  peticioComarques.onload = rellenaComarcaL;
 
-  function ompleLlistaComarques() {
+  function rellenaComarcaL() {
     let fitxerXML = peticioComarques.responseXML;
     let desplegable = document.getElementById("comarca");
-    processarResposta(fitxerXML, desplegable, "comarca");
+    procesarRespuesta(fitxerXML, desplegable, "comarca");
   }
 
   //Añadimos elementos donde queremos designar un evento concreto
-  let llistatComarca = document.getElementById("comarca");
-  let botoCerca = document.getElementById("cercar");
+  let listadoComarca = document.getElementById("comarca");
+  let lupaBtn = document.getElementById("cercar");
 
 
   //------------EJERCICIO 2 --------------//
-  //Asignamos los eventos
-  llistatComarca.addEventListener("change", cercaPoblacions);
+  //Función que salta cuando el listado de las comarcas cambia
+  listadoComarca.addEventListener("change", buscaPoblacion);
   
-
   // Función que salta cuando elegimos una opción del primer desplegable
-  function cercaPoblacions() {
-    //Agarem el valor de la comarca seleccionada
-    let nomComarca = llistatComarca.value;
+  function buscaPoblacion() {
+    //Cogemos el valor de la comarca seleccionada
+    let nomComarca = listadoComarca.value;
 
     //Nueva petición AJAX con el nombre de la comarca seleccionada
-    let consultaPoblacions = new XMLHttpRequest();
+    let consultaPoblac = new XMLHttpRequest();
     let poblacionsURL = URL+"?comarca="+nomComarca;
-    consultaPoblacions.open("GET", poblacionsURL, true);
-    consultaPoblacions.send(null);
-    consultaPoblacions.onload = ompleLlistaPoblacions;
+    consultaPoblac.open("GET", poblacionsURL, true);
+    consultaPoblac.send(null);
+    consultaPoblac.onload = rellenaPoblacionL;
 
 
-    function ompleLlistaPoblacions() {
-      let xmlPoblacions = consultaPoblacions.responseXML;
+    function rellenaPoblacionL() {
+      let xmlPoblacions = consultaPoblac.responseXML;
       let desplegable = document.getElementById("poblacio");
-      processarResposta(xmlPoblacions, desplegable, "municipi");
+      procesarRespuesta(xmlPoblacions, desplegable, "municipi");
     }
   }
 
 
   //------------EJERCICIO 3 --------------//
   //Función que salta cuando le damos al botón de (lupa)
-  botoCerca.addEventListener("click", mostraDades);
+  lupaBtn.addEventListener("click", mostraDades);
 
   function mostraDades() {
     let desplegable = document.getElementById("poblacio");
@@ -158,7 +157,7 @@ window.onload = function () {
   * a partir del contingut d'una etiqueta concreta (etiqueta)
   * d'un fitxer XML (fitxer)
   */
-  function processarResposta(fitxer, llista, etiqueta) {
+  function procesarRespuesta(fitxer, llista, etiqueta) {
     let elements = fitxer.getElementsByTagName(etiqueta);
     
     //Vaciamos la lista antes de abrirla (por si hay resultados de una búsqueda anterior)
