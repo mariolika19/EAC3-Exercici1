@@ -64,15 +64,14 @@ window.onload = function () {
   peticioComarques.onload = rellenaComarcaL;
 
   function rellenaComarcaL() {
-    let fitxerXML = peticioComarques.responseXML;
+    let ficheroXML = peticioComarques.responseXML;
     let desplegable = document.getElementById("comarca");
-    procesarRespuesta(fitxerXML, desplegable, "comarca");
+    procesarRespuesta(ficheroXML, desplegable, "comarca");
   }
 
   //Añadimos elementos donde queremos designar un evento concreto
   let listadoComarca = document.getElementById("comarca");
   let lupaBtn = document.getElementById("cercar");
-
 
   //------------EJERCICIO 2 --------------//
   //Función que salta cuando el listado de las comarcas cambia
@@ -97,7 +96,6 @@ window.onload = function () {
       procesarRespuesta(xmlPoblacions, desplegable, "municipi");
     }
   }
-
 
   //------------EJERCICIO 3 --------------//
   //Función que salta cuando le damos al botón de (lupa)
@@ -137,7 +135,6 @@ window.onload = function () {
         nom.innerText = nomGranja;
         direccion.innerText = direccionGranja;
         especie.innerText = especieGranja;
-
         
         //------------EJERCICIO 4 --------------//
         //Buscamos los valores para rellenar la gráfica
@@ -153,34 +150,32 @@ window.onload = function () {
     }
   }
 
-  /*Funció que omple una llista desplegable concreta (llista) 
-  * a partir del contingut d'una etiqueta concreta (etiqueta)
-  * d'un fitxer XML (fitxer)
-  */
-  function procesarRespuesta(fitxer, llista, etiqueta) {
-    let elements = fitxer.getElementsByTagName(etiqueta);
+  /*Función que rellena una lista desplegable (lista) a partir del contenido de una 
+  etiqueta (etiqueta) y de un fichero XML (fichero) */  
+  function procesarRespuesta(fichero, lista, etiqueta) {
+    let elementos = fichero.getElementsByTagName(etiqueta);
     
-    //Vaciamos la lista antes de abrirla (por si hay resultados de una búsqueda anterior)
-    while (llista.length > 1) {
-      llista.remove(llista.length - 1);
+    //Vaciamos la lista antes de abrirla 
+    while (lista.length > 1) {
+      lista.remove(lista.length - 1);
     }
 
-    //Añadimos los valores de la etiqueta pasados por parámetro sin repetir
-    let conjunt = [];
-    for (let i=0; i < elements.length; i++) {
-      let valor = elements[i].textContent;
-      if (!conjunt.includes(valor)){
-        conjunt.push(valor);
+    //Añadimos los valores de la etiqueta pasados por parámetro, sin repetir
+    let conjunto = [];
+    for (let i=0; i < elementos.length; i++) {
+      let valor = elementos[i].textContent;
+      if (!conjunto.includes(valor)){
+        conjunto.push(valor);
       } 
     }
 
     //Rellenamos la vista desplegable con los valores
-    for (let i = 0; i < conjunt.length; i++) {
-      let element = conjunt[i];
-      let opcio = document.createElement("option");
-      opcio.text = element;
-      opcio.value = element;
-      llista.appendChild(opcio);
+    for (let i = 0; i < conjunto.length; i++) {
+      let elem = conjunto[i];
+      let opcion = document.createElement("option");
+      opcion.text = elem;
+      opcion.value = elem;
+      lista.appendChild(opcion);
     }
   }
 };
